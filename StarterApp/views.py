@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from StarterApp.forms import createcatsFormulario
-from StarterApp import Cats
+from StarterApp.models import Cats
 
 # Create your views here.
 
@@ -10,7 +10,7 @@ def StarterApp (request):
 def createcats(request):
 
     if request.method == "POST":
-        formulario = createFormlario(request.POST)
+        formulario = createcatsFormulario(request.POST)
         if formulario.is_valid ():
             info = formulario.cleaned_data
             gato = Cats (nombre= info["nombre"],edad= info["edad"], fecha_nacimiento= ["fecha_nacimiento"],)
