@@ -8,17 +8,19 @@ def StarterApp (request):
     return render(request, 'start/start.html')
     
 def createcats(request):
+    mensaje = "Aquí puedes crear un gato"
 
     if request.method == "POST":
         formulario = createcatsFormulario(request.POST)
-        if formulario.is_valid ():
+        if formulario.is_valid():
             info = formulario.cleaned_data
-            gato = Cats (nombre= info["nombre"],edad= info["edad"], fecha_nacimiento= ["fecha_nacimiento"],)
-            gato.save ()
-            mensaje: f"Se creo el gato {gato.nombre}"
-        else: 
-            return render (request, "StarterApp/createcats.html", {"formulario": formulario} )
+            gato = Cats(nombre=info["nombre"], edad=info["edad"], fecha_nacimiento=info["fecha_nacimiento"])
+            gato.save()
+            mensaje = f"Se creó el gato {gato.nombre}"
+        else:
+            return render(request, "start/createcats.html", {"formulario": formulario})
 
-    formulario= createcatsFormulario ()
-    return render (request, "StarterApp/createcats.html", {"formulario": formulario, "mensaje": mensaje})
+    formulario = createcatsFormulario()
+    return render(request, "start/createcats.html", {"formulario": formulario, "mensaje": mensaje})
+
 
