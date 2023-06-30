@@ -1,5 +1,11 @@
+
 from django.urls import path
 from StarterApp import views
-urlpatterns=[
-    path ('', views.start, name='Start')
+
+app_name= "StarterApp"
+
+urlpatterns = [
+    path('', views.StarterApp, name='StarterApp'),
+    path('cats/create/', views.createcats, name='createcats'),
 ]
+
