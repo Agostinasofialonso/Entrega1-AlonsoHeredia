@@ -2,7 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import Cats, Dogs, Birds
 from .forms import CreateCatsForm, CreateDogsForm, CreateBirdsForm
+from django.utils.translation import gettext as _
 
+def some_view(request):
+    translated_text = _('Texto a traducir')
 # Create your views here.
 
 def StarterApp (request):
