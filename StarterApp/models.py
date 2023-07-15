@@ -27,5 +27,3 @@ class Birds(models.Model):
     @property
     def fecha_nacimiento_formatted(self):
         return self.fecha_nacimiento.strftime('%d/%m/%Y')
-
-    
