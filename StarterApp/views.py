@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect
 from .models import Cats, Dogs, Birds
 from .forms import CreateCatsForm, CreateDogsForm, CreateBirdsForm
 from django.utils.translation import gettext as _
+from django.views.generic import ListView
+from .forms import searchForm
 
 def some_view(request):
     translated_text = _('Texto a traducir')
@@ -60,12 +62,5 @@ def createbirds(request):
     return render(request, "start/createbirds.html", {"formulario": formulario, "mensaje": mensaje})
 
 def search(request):
-    termino = request.POST.get("termino")
-    if termino:
-        # Realiza la búsqueda usando el término ingresado por el usuario
-        # y muestra los resultados
-        animales = Cats.objects.filter(nombre__icontains=termino) | Dogs.objects.filter(nombre__icontains=termino) | Birds.objects.filter(nombre__icontains=termino)
-        return render(request, "start/search.html", {"animales": animales})
-    else:
-        # Muestra un mensaje de error si el formulario no es válido
-        return render(request, "start/search.html", {"mensaje": "No se ingresó ningún término de búsqueda"})
+    form = searchForm()
+    return render(request, 'start/search.html', {'form': form})

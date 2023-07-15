@@ -1,5 +1,6 @@
 from django import forms
 
+
 class CreateCatsForm(forms.Form):
     nombre = forms.CharField(max_length=20)
     edad = forms.IntegerField()
@@ -27,7 +28,8 @@ class CreateBirdsForm(forms.Form):
         fecha = self.cleaned_data['fecha_nacimiento']
         return fecha
 
-class SearchForm(forms.Form):
+class searchForm(forms.Form):
     termino = forms.CharField(label='Buscar')
+
 
 
