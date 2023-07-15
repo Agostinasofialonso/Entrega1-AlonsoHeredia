@@ -59,3 +59,13 @@ def createbirds(request):
     formulario = CreateBirdsForm()
     return render(request, "start/createbirds.html", {"formulario": formulario, "mensaje": mensaje})
 
+def search(request):
+    termino = request.POST.get("termino")
+    if termino:
+        # Realiza la búsqueda usando el término ingresado por el usuario
+        # y muestra los resultados
+        animales = Cats.objects.filter(nombre__icontains=termino) | Dogs.objects.filter(nombre__icontains=termino) | Birds.objects.filter(nombre__icontains=termino)
+        return render(request, "start/search.html", {"animales": animales})
+    else:
+        # Muestra un mensaje de error si el formulario no es válido
+        return render(request, "start/search.html", {"mensaje": "No se ingresó ningún término de búsqueda"})
