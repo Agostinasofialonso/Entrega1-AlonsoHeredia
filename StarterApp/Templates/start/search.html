@@ -1,4 +1,18 @@
+
+{% extends "Base.html" %}
+{% block tittle_head %}
+<title>Buscar</title>
+{% endblock tittle_head %}
+
+{% block h1_header %}
 <form method="GET">
     <input type="text" name="termino" placeholder="Buscar">
     <button type="submit">Buscar</button>
 </form>
+{% endblock h1_header %}
+
+{% block content  %}
+<p>
+    Esta es la página desarrollada para Entrega 1 de Python para Coderhouse
+</p>
+{% endblock content  %}
