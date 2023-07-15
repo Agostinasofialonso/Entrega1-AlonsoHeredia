@@ -27,4 +27,7 @@ class CreateBirdsForm(forms.Form):
         fecha = self.cleaned_data['fecha_nacimiento']
         return fecha
 
+class SearchForm(forms.Form):
+    termino = forms.CharField(label='Buscar')
+
 
