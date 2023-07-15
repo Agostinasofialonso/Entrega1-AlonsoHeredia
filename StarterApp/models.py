@@ -10,4 +10,22 @@ class Cats(models.Model):
     def fecha_nacimiento_formatted(self):
         return self.fecha_nacimiento.strftime('%d/%m/%Y')
 
+class Dogs(models.Model):
+    nombre = models.CharField(max_length=20)
+    edad = models.IntegerField()
+    fecha_nacimiento = models.DateField()
+
+    @property
+    def fecha_nacimiento_formatted(self):
+        return self.fecha_nacimiento.strftime('%d/%m/%Y')
+
+class Birds(models.Model):
+    nombre = models.CharField(max_length=20)
+    edad = models.IntegerField()
+    fecha_nacimiento = models.DateField()
+
+    @property
+    def fecha_nacimiento_formatted(self):
+        return self.fecha_nacimiento.strftime('%d/%m/%Y')
+
     
