@@ -18,6 +18,6 @@ urlpatterns = [
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('', TemplateView.as_view(template_name='start/start.html'), name='start'),
 ]
 
