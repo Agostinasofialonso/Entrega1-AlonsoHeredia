@@ -30,6 +30,7 @@ class CreateBirdsForm(forms.Form):
 
 class searchForm(forms.Form):
     termino = forms.CharField(label='Buscar')
+    
 
 
 
