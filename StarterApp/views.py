@@ -61,6 +61,23 @@ def createbirds(request):
     formulario = CreateBirdsForm()
     return render(request, "start/createbirds.html", {"formulario": formulario, "mensaje": mensaje})
 
+
 def search(request):
-    form = searchForm()
-    return render(request, 'start/search.html', {'form': form})
+    if request.method == 'GET':
+        termino = request.GET.get('termino', '')
+        form = searchForm(initial={'termino': termino})
+        results = None
+
+        if termino:
+            # Realizar la búsqueda en los tres modelos y combinar los resultados
+            dogs_results = Dogs.objects.filter(nombre__icontains=termino)
+            birds_results = Birds.objects.filter(nombre__icontains=termino)
+            cats_results = Cats.objects.filter(nombre__icontains=termino)
+
+            # Combinar los resultados en una lista
+            results = list(dogs_results) + list(birds_results) + list(cats_results)
+
+        return render(request, 'start/search.html', {'form': form, 'results': results})
+
+    return HttpResponseNotAllowed(['GET'])
+
