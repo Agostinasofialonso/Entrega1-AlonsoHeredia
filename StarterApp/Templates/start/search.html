@@ -1,4 +1,3 @@
-
 {% extends "Base.html" %}
 {% block tittle_head %}
 <title>Buscar</title>
@@ -6,13 +5,18 @@
 
 {% block h1_header %}
 <form method="GET">
-    <input type="text" name="termino" placeholder="Buscar">
+    {{ form.as_p }}
     <button type="submit">Buscar</button>
 </form>
 {% endblock h1_header %}
 
-{% block content  %}
-<p> 
-    Esta es la página desarrollada para Entrega 1 de Python para Coderhouse
-</p>
-{% endblock content  %}
+{% block content %}
+{% if results %}
+    <h3>Resultados de la búsqueda:</h3>
+    <ul>
+        {% for item in results %}
+            <li>{{ item.nombre }} - Edad: {{ item.edad }} - Fecha de nacimiento: {{ item.fecha_nacimiento_formatted }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock content %}
