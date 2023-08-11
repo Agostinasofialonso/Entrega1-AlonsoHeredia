@@ -1,0 +1,18 @@
+{% extends 'Base.html' %}
+{% load static %}
+
+{% block head_title %}
+<title>Editar Perfil</title>
+{% endblock head_title %}
+
+{% block content %}
+<form class="edit" action={% url 'editprofile' %} method= "post" enctype='multipart/form-data'>
+    {% csrf_token %}
+    {{ formulario }}
+    <button class="input">Guardar Cambios</button>
+</form>
+<button class="back" type= 'button'>
+    <a class= "navbar-brand" href={% url 'profile' %}>Volver</a>
+</button>
+<button class="input"><a class= "navbar-brand" href={% url 'editpassword' %}>Editar contraseña</a></button>
+{% endblock content %}
