@@ -12,6 +12,7 @@
     <li>Apellido: {{request.user.last_name}}</li>
     <li>Email: {{request.user.email}}</li>
     <li>Fecha de nacimiento: {% if request.user.infoextra.fechaNacimiento %}{{request.user.infoextra.fechaNacimiento}}{% endif %}</li>
+    <li>Avatar: {% if request.user.infoextra.avatar %}<img class="avatar" src={{request.user.infoextra.avatar.url}} alt="Foto Perfil">{% endif %}</li>
 </ul>
-<button class="input"><a class= "navbar-brand" href={% url 'editprofile' %}>Editar Perfil</a></button>
-{% endblock contenido %}
+<button class="input"><a class= "navbar-brand" href={% url 'editar_perfil' %}>Editar Perfil</a></button>
+{% endblock content %}

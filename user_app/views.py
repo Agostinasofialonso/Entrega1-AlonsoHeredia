@@ -52,14 +52,20 @@ def editar_perfil(request):
         formulario = EditarPerfil(request.POST, request.FILES, instance=request.user)
         if formulario.is_valid():
             
+            avatar = formulario.cleaned_data.get('avatar')
             fechaNacimiento = formulario.cleaned_data.get('fechaNacimiento')
             if fechaNacimiento:
                 info_extra_user.fechaNacimiento = fechaNacimiento
                 info_extra_user.save()
+            if avatar:
+                info_extra_user.avatar = avatar
+                info_extra_user.save()    
             
             formulario.save()
             return redirect('profile')
-    
+    else:
+        formulario = EditarPerfil(initial={'avatar': info_extra_user.avatar}, instance=request.user)
+        
     return render(request, 'Register/editprofile.html', {'form': formulario})
 
 class editpassword(LoginRequiredMixin, View):

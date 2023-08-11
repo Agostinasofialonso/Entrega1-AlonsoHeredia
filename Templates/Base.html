@@ -27,6 +27,18 @@
                 <a class="navbar-brand" href={% url 'StarterApp:createdogs' %}>Crear Perro</a>
                 <a class="navbar-brand" href={% url 'StarterApp:createbirds' %}>Crear Pajaro</a>
                 <a class="navbar-brand" href={% url 'StarterApp:search' %}>Buscar</a>
+                {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
+        </li>
+    {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'Login' %}>Ingresar</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'Register' %}>Registrarse</a>
+        </li>						
+    {% endif %}
             </div>
         </nav>
         <!-- Masthead-->
@@ -46,14 +58,6 @@
             </div>
         </header>
         {% block content %}
-        {% else %}
-						<li class="nav-item">
-							<a class="nav-link" href={% url 'Login' %}>Ingresar</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href={% url 'Register' %}>Registrarse</a>
-						</li>						
-						{% endif %}
         {% endblock content %}
         <!-- Footer-->
         <footer class="footer bg-light">
