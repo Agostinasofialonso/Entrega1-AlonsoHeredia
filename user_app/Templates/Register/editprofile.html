@@ -8,7 +8,7 @@
 {% block content %}
 <form class="edit" action={% url 'editprofile' %} method= "post" enctype='multipart/form-data'>
     {% csrf_token %}
-    {{ formulario }}
+    {{ form }}
     <button class="input">Guardar Cambios</button>
 </form>
 <button class="back" type= 'button'>

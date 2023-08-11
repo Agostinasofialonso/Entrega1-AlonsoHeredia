@@ -81,3 +81,4 @@ def search(request):
 
     return HttpResponseNotAllowed(['GET'])
 
+
