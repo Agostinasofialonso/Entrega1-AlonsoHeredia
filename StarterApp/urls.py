@@ -7,6 +7,7 @@ app_name= "StarterApp"
 
 urlpatterns = [
     path('', views.StarterApp, name='StarterApp'),
+    path("aboutus/", views.aboutus, name = 'aboutus'),
     path('cats/create/', views.createcats, name='createcats'),
     path('dogs/create/', views.createdogs, name='createdogs'),
     path('birds/create/', views.createbirds, name='createbirds'),

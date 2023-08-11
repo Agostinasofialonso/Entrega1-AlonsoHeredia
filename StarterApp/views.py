@@ -10,6 +10,10 @@ def some_view(request):
     translated_text = _('Texto a traducir')
 # Create your views here.
 
+def aboutus(request):
+    return render ( request, 'start/aboutus.html')
+
+
 def StarterApp (request):
     return render(request, 'start/start.html')
     
