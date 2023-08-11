@@ -16,12 +16,13 @@ class editprofile(userChangeForm):
     password = None
     email = forms.EmailField()
     first_name = forms.CharField(label='Nombre', max_length=20)    
-    last_name = forms.CharField(label='Apellido', max_length=20)  
+    last_name = forms.CharField(label='Apellido', max_length=20)
+    avatar = forms.ImageField(label='Imagen/avatar', required=False)  
     fechaNacimiento = forms.DateField(label= 'Fecha de Nacimiento', required=False, widget=forms.DateInput(attrs={'type': 'date'}))
     
     class Meta:
         model = User
-        fields = ['email', 'first_name', 'last_name', 'fechaNacimiento']
+        fields = ['email', 'first_name', 'last_name', 'avatar', 'fechaNacimiento']
         
 class CambiarPasswordForm(forms.Form):
     password1 = forms.CharField(label = 'Contraseña',widget = forms.PasswordInput(
