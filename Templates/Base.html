@@ -18,15 +18,15 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
     </head>
-    <body>
+    <body class="body">
         <!-- Navigation-->
-        <nav class="navbar navbar-light bg-light static-top">
+        <nav class="navbar">
             <div class="container">
                 <a class="navbar-brand" href= {% url 'StarterApp:StarterApp' %}>Inicio</a>
                 <a class="navbar-brand" href={% url 'StarterApp:aboutus' %}>Nosotros</a>
                 <a class="navbar-brand" href={% url 'StarterApp:createcats' %}>Crear Gato</a>
                 <a class="navbar-brand" href={% url 'StarterApp:createdogs' %}>Crear Perro</a>
-                <a class="navbar-brand" href={% url 'StarterApp:createbirds' %}>Crear Pajaro</a>
+                <a class="navbar-brand" href={% url 'StarterApp:createbirds' %}>Crear Pájaro</a>
                 <a class="navbar-brand" href={% url 'StarterApp:search' %}>Buscar</a>
                 {% if user.is_authenticated %}
         <li class="nav-item">
@@ -55,6 +55,7 @@
                             </h1>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </header>

@@ -1,22 +1,29 @@
 {% extends "Base.html" %}
+
 {% block tittle_head %}
 <title>Buscar</title>
 {% endblock tittle_head %}
 
 {% block h1_header %}
-<form method="GET">
-    {{ form.as_p }}
-    <button type="submit">Buscar</button>
-</form>
+<div class="container">
+    <form method="GET" class="search-form">
+        {{ form.as_p }}
+        <button type="submit">Buscar</button>
+    </form>
+</div>
 {% endblock h1_header %}
 
 {% block content %}
-{% if results %}
+<div class="container">
+    {% if results %}
     <h3>Resultados de la búsqueda:</h3>
-    <ul>
+    <ul class="search-results">
         {% for item in results %}
-            <li>{{ item.nombre }} - Edad: {{ item.edad }} - Fecha de nacimiento: {{ item.fecha_nacimiento_formatted }}</li>
+        <li>
+            {{ item.nombre }} - Edad: {{ item.edad }} - Fecha de nacimiento: {{ item.fecha_nacimiento_formatted }}
+        </li>
         {% endfor %}
     </ul>
-{% endif %}
+    {% endif %}
+</div>
 {% endblock content %}
