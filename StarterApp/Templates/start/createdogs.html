@@ -1,19 +1,26 @@
 {% extends "Base.html" %}
+{% load static %}
 {% block tittle_head %}
 <title>Crear Perro</title>
 {% endblock tittle_head %}
 
 {% block h1_header %}
-Crear Perro
+<div class="tittle">Crear Perro</div>
 {% endblock h1_header %}
 
-{% block content  %}
-<p>
-    {{mensaje}}
-</p>
-<form action="" method= "post">
-    {% csrf_token %}
-   </table>{{formulario}}</table> 
-    <button>Crear</button>
-</form>
-{% endblock content  %}
+{% block content %}
+<div class="formulario">
+    <p>
+        {{mensaje}}
+    </p>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{formulario}}
+        </table>
+        <button class="boton-crear">Crear</button>
+    </form>
+    <img src="{% static 'assets/img/Dog.jpg' %}" class="picdog">
+</div>
+{% endblock content %}
+

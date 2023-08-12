@@ -1,14 +1,29 @@
 {% extends "Base.html" %}
+{% load static %}
 {% block tittle_head %}
 <title>Inicio</title>
 {% endblock tittle_head %}
 
-{% block h1_header %}
-Bienvenidos a mi página
+{% block h1_header%}
+<p class= "h1">  Bienvenido a Animal Planet: </p>
+<p class= "h1"> ¡Dónde Tus Creaciones Cobran Vida!</p>
 {% endblock h1_header %}
 
 {% block content  %}
-<p> 
-    Esta es la página desarrollada para Entrega 1 de Python para Coderhouse
+<div>
+<p class= "text"> 
+    Sumérgete en un mundo de imaginación y creatividad en Animal Planet, la plataforma en línea que te permite dar vida a tus animales más fantásticos. ¿Alguna vez has soñado con un perro con alas de águila o un gato con escamas de dragón? ¡Aquí es donde tus ideas toman forma!
+    
+    Nuestra misión en Animal Planet es brindarte la oportunidad de ser el creador supremo de tus propios seres únicos. Con nuestra avanzada tecnología de diseño genético virtual, puedes fusionar características de diferentes especies para dar origen a criaturas totalmente nuevas. ¿Quieres un compañero peludo que también pueda nadar como un delfín? ¡Puedes hacerlo realidad en Animal Planet!
+    
+    ¿Cómo funciona? Es sencillo. Simplemente inicia sesión en tu cuenta Animal Planet y comienza a explorar nuestro banco de genes. Elige entre una amplia gama de rasgos y atributos, desde alas majestuosas hasta colas esponjosas y mucho más. Combina y ajusta según tu visión y, una vez que estés satisfecho con tu creación, dale vida con solo presionar un botón.
+    
+    Pero eso no es todo. Una vez que hayas creado tu animal único, puedes llevarlo a nuestro "Mundo Virtual de Animales", donde podrás explorar entornos impresionantes y participar en actividades emocionantes junto a otras criaturas creadas por usuarios. Compite en carreras aéreas, desafíos acuáticos o simplemente socializa en los jardines exuberantes. ¡Las posibilidades son infinitas en Animal Planet!
+    
+    Además, fomentamos la interacción social y el aprendizaje colaborativo. Únete a grupos de creadores para intercambiar ideas, consejos y trucos sobre la creación de las criaturas más asombrosas. Comparte tus logros en tus redes sociales y participa en concursos para tener la oportunidad de ganar emocionantes premios.
+    
+    Animal Planet es más que una página web: es un espacio para que tu imaginación florezca y tus creaciones cobren vida. Únete a nuestra comunidad de soñadores y exploradores hoy mismo y comienza tu viaje en el emocionante mundo de la creación animal. Recuerda, en Animal Planet, ¡la única limitación es tu imaginación!
 </p>
+<img src="{% static 'assets/img/animal.jpg' %}" class="picanimals">
+</div>
 {% endblock content  %}
