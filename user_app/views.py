@@ -7,6 +7,9 @@ from .models import InfoExtra
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
+from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView
+
 
 
 def register(request):
@@ -43,9 +46,9 @@ def iniciar_sesion(request):
     return render(request, 'Login/login.html', {'form': formulario})
 
 
-@login_required
-def verPerfil(request):
-    return render(request, 'Register/profile.html')
+class VerPerfilView(LoginRequiredMixin, TemplateView):
+    template_name = 'Register/profile.html'
+
 
 
 @login_required

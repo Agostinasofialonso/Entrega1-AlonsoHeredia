@@ -29,20 +29,20 @@
                 <a class="navbar-brand" href={% url 'StarterApp:createbirds' %}>Crear Pájaro</a>
                 <a class="navbar-brand" href={% url 'StarterApp:search' %}>Buscar</a>
                 {% if user.is_authenticated %}
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
-        </li>
-    {% else %}
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Ingresar</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'register' %}">Registrarse</a>
-        </li>
-         <li class="nav-item">
-            <a class="nav-link" href="{% url 'Register:profile' %}">Ver perfil</a>
-        </li>						
-    {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">Ver perfil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Ingresar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Registrarse</a>
+                </li>
+         		{% endif %}
             </div>
         </nav>
         <!-- Masthead-->
