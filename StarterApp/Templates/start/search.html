@@ -16,14 +16,16 @@
 {% block content %}
 <div class="container">
     {% if results %}
-    <h3>Resultados de la búsqueda:</h3>
-    <ul class="search-results">
-        {% for item in results %}
-        <li>
-            {{ item.nombre }} - Edad: {{ item.edad }} - Fecha de nacimiento: {{ item.fecha_nacimiento_formatted }}
-        </li>
-        {% endfor %}
-    </ul>
+        <h3>Resultados de la búsqueda:</h3>
+        <ul class="search-results">
+            {% for item in results %}
+            <li>
+                {{ item.nombre }} - Edad: {{ item.edad }} - Fecha de nacimiento: {{ item.fecha_nacimiento_formatted }}
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron datos.</p>
     {% endif %}
 </div>
-{% endblock content %}
+{% endblock content %}
