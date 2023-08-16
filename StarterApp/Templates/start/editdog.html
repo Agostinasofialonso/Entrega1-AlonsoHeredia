@@ -1,27 +1,23 @@
 {% extends "Base.html" %}
 {% load static %}
+
 {% block tittle_head %}
-<title>Crear Pájaro</title>
+<title>Editar Perro</title>
 {% endblock tittle_head %}
 
 {% block h1_header %}
-<div class="tittle">Crear Pajaro</div>
+<div class="tittle">Editar Perro</div>
 {% endblock h1_header %}
 
 {% block content %}
 <div class="formulario">
-    <p>
-        {{mensaje}}
-    </p>
     <form action="" method="post">
         {% csrf_token %}
         <table>
-            {{formulario}}
+            {{ formulario }}
         </table>
-        <button class="boton-crear">Crear</button>
+        <button class="boton-editar" type="submit">Guardar Cambios</button>
     </form>
-    <img src="{% static 'assets/img/Birds.jpg' %}" class="picbird">
+    <img src="{% static 'assets/img/Dog.jpg' %}" class="picdog">
 </div>
 {% endblock content %}
-
-

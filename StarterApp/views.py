@@ -5,6 +5,8 @@ from .forms import CreateCatsForm, CreateDogsForm, CreateBirdsForm
 from django.utils.translation import gettext as _
 from django.views.generic import ListView
 from .forms import searchForm
+from django.db.models import Q
+from django.urls import reverse
 
 def some_view(request):
     translated_text = _('Texto a traducir')
@@ -73,16 +75,71 @@ def search(request):
         results = None
 
         if termino:
-            # Realizar la búsqueda en los tres modelos y combinar los resultados
-            dogs_results = Dogs.objects.filter(nombre__icontains=termino)
-            birds_results = Birds.objects.filter(nombre__icontains=termino)
-            cats_results = Cats.objects.filter(nombre__icontains=termino)
+            # Use Q object for filtering multiple fields
+            dogs_results = Dogs.objects.filter(Q(nombre__icontains=termino) | Q(edad__icontains=termino))
+            birds_results = Birds.objects.filter(Q(nombre__icontains=termino) | Q(edad__icontains=termino))
+            cats_results = Cats.objects.filter(Q(nombre__icontains=termino) | Q(edad__icontains=termino))
 
-            # Combinar los resultados en una lista
+            # Combine the results into a list
+            results = list(dogs_results) + list(birds_results) + list(cats_results)
+        else:
+            # Display all results when no search term is provided
+            dogs_results = Dogs.objects.all()
+            birds_results = Birds.objects.all()
+            cats_results = Cats.objects.all()
             results = list(dogs_results) + list(birds_results) + list(cats_results)
 
         return render(request, 'start/search.html', {'form': form, 'results': results})
 
     return HttpResponseNotAllowed(['GET'])
+
+
+def deletecat(request, pk):
+    gato = get_object_or_404(Cats, pk=pk)
+    if request.method == "POST":
+        gato.delete()
+        return HttpResponseRedirect(reverse('StarterApp:StarterApp'))
+    return render(request, 'start/deletecat.html', {'animal': gato})
+
+def deletedog(request, pk):
+    perro = get_object_or_404(Dogs, pk=pk)
+    if request.method == "POST":
+        perro.delete()
+        return HttpResponseRedirect(reverse('StarterApp:StarterApp'))
+    return render(request, 'start/deletedog.html', {'animal': perro})
+
+def deletebird(request, pk):
+    pajaro = get_object_or_404(Birds, pk=pk)
+    if request.method == "POST":
+        pajaro.delete()
+        return HttpResponseRedirect(reverse('StarterApp:StarterApp'))
+    return render(request, 'start/deletebird.html', {'animal': pajaro})
+
+def editcat(request, pk):
+    gato = get_object_or_404(Cats, pk=pk)
+    formulario = CreateCatsForm(request.POST or None, instance=gato)
+    if formulario.is_valid():
+        formulario.save()
+        return HttpResponseRedirect(reverse('StarterApp:StarterApp'))
+    return render(request, 'start/editcat.html', {'formulario': formulario, 'animal': gato})
+
+def editdog(request, pk):
+    perro = get_object_or_404(Dogs, pk=pk)
+    formulario = CreateDogsForm(request.POST or None, instance=perro)
+    if formulario.is_valid():
+        formulario.save()
+        return HttpResponseRedirect(reverse('StarterApp:StarterApp'))
+    return render(request, 'start/editdog.html', {'formulario': formulario, 'animal': perro})
+
+def editbird(request, pk):
+    pajaro = get_object_or_404(Birds, pk=pk)
+    formulario = CreateBirdsForm(request.POST or None, instance=pajaro)
+    if formulario.is_valid():
+        formulario.save()
+        return HttpResponseRedirect(reverse('StarterApp:StarterApp'))
+    return render(request, 'start/editbird.html', {'formulario': formulario, 'animal': pajaro})
+
+
+
 
 
