@@ -1,8 +1,8 @@
 {% extends "Base.html" %}
 
-{% block tittle_head %}
+{% block title_head %}
 <title>Buscar</title>
-{% endblock tittle_head %}
+{% endblock title_head %}
 
 {% block h1_header %}
 <div class="container">
@@ -21,11 +21,13 @@
             {% for item in results %}
             <li>
                 {{ item.nombre }} - Edad: {{ item.edad }} - Fecha de nacimiento: {{ item.fecha_nacimiento_formatted }}
+                <a href="{{ item.get_edit_url }}">Editar</a> | <a href="{{ item.get_delete_url }}">Eliminar</a>
             </li>
             {% endfor %}
         </ul>
     {% else %}
         <p>No se encontraron datos.</p>
     {% endif %}
-</div>
-{% endblock content%}
+    31	</div>
+    32	{% endblock content %}
+    

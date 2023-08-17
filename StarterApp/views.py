@@ -7,6 +7,9 @@ from django.views.generic import ListView
 from .forms import searchForm
 from django.db.models import Q
 from django.urls import reverse
+from django.shortcuts import get_object_or_404
+
+
 
 def some_view(request):
     translated_text = _('Texto a traducir')
