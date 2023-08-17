@@ -120,27 +120,43 @@ def deletebird(request, pk):
 
 def editcat(request, pk):
     gato = get_object_or_404(Cats, pk=pk)
-    formulario = CreateCatsForm(request.POST or None, instance=gato)
-    if formulario.is_valid():
-        formulario.save()
-        return HttpResponseRedirect(reverse('StarterApp:StarterApp'))
+    
+    if request.method == 'POST':
+        formulario = CreateCatsForm(request.POST, instance=gato)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('StarterApp:StarterApp')
+    else:
+        formulario = CreateCatsForm(instance=gato)
+
     return render(request, 'start/editcat.html', {'formulario': formulario, 'animal': gato})
 
 def editdog(request, pk):
     perro = get_object_or_404(Dogs, pk=pk)
-    formulario = CreateDogsForm(request.POST or None, instance=perro)
-    if formulario.is_valid():
-        formulario.save()
-        return HttpResponseRedirect(reverse('StarterApp:StarterApp'))
-    return render(request, 'start/editdog.html', {'formulario': formulario, 'animal': perro})
+
+    if request.method == 'POST':
+        formulario = CreateDogsForm(request.POST, instance=perro)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('StarterApp:StarterApp')
+    else:
+        formulario = CreateDogsForm(instance=perro)
+
+    return render(request, 'start/editdog.html', {'formulario': formulario, 'animal':perro})
 
 def editbird(request, pk):
     pajaro = get_object_or_404(Birds, pk=pk)
-    formulario = CreateBirdsForm(request.POST or None, instance=pajaro)
-    if formulario.is_valid():
-        formulario.save()
-        return HttpResponseRedirect(reverse('StarterApp:StarterApp'))
+    
+    if request.method == 'POST':
+        formulario = CreateBirdsForm(request.POST, instance=pajaro)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('StarterApp:StarterApp')
+    else:
+        formulario = CreateBirdsForm(instance=pajaro)
+
     return render(request, 'start/editbird.html', {'formulario': formulario, 'animal': pajaro})
+
 
 
 
