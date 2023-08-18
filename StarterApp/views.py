@@ -24,10 +24,10 @@ def createcats(request):
     mensaje = "Aquí puedes crear un gato"
 
     if request.method == "POST":
-        formulario = CreateCatsForm(request.POST)
+        formulario = CreateCatsForm(request.POST,request.FILES)
         if formulario.is_valid():
             info = formulario.cleaned_data
-            gato = Cats(nombre=info["nombre"], edad=info["edad"], fecha_nacimiento=info["fecha_nacimiento"])
+            gato = Cats(nombre=info["nombre"], edad=info["edad"], fecha_nacimiento=info["fecha_nacimiento"], imagen=info["imagen"],texto_formateado=info["texto_formateado"])
             gato.save()
             mensaje = f"Se creó el gato {gato.nombre}"
         else:

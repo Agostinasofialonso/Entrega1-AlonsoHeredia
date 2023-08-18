@@ -12,16 +12,15 @@
 {% block content %}
 <div class="formulario">
     <form action="" method="post">
+    </form>
+        <button class="boton-editar" type="submit">Guardar Cambios</button>
+     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
-            {{ formulario }}
-        </table>
-        <button class="boton-editar" type="submit">Guardar Cambios</button>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ formulario.as_p }}
-            <button type="submit">Guardar cambios</button>
-        </form>
+            {{ formulario.media }}
+            {{ formulario. }}   
+        </table>  
+        <input type="submit" valye="crear">
     </form>
     <img src="{% static 'assets/img/Cats.jpg' %}" class="piccat">
 </div>
