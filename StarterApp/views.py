@@ -9,8 +9,6 @@ from django.db.models import Q
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 
-
-
 def some_view(request):
     translated_text = _('Texto a traducir')
 # Create your views here.
@@ -118,44 +116,67 @@ def deletebird(request, pk):
         return HttpResponseRedirect(reverse('StarterApp:StarterApp'))
     return render(request, 'start/deletebird.html', {'animal': pajaro})
 
+
+    
 def editcat(request, pk):
     gato = get_object_or_404(Cats, pk=pk)
     
     if request.method == 'POST':
-        formulario = CreateCatsForm(request.POST, instance=gato)
+        formulario = CreateCatsForm(request.POST, request.FILES)
         if formulario.is_valid():
-            formulario.save()
+            gato.nombre = formulario.cleaned_data.get('nombre')
+            gato.edad = formulario.cleaned_data.get('edad')
+            gato.fecha_nacimiento = formulario.cleaned_data.get('fecha_nacimiento')
+            gato.imagen = formulario.cleaned_data.get('imagen')  # Actualizar la imagen
+            gato.texto_formateado = formulario.cleaned_data.get('texto_formateado')  # Actualizar el texto formateado
+            gato.save()
             return redirect('StarterApp:StarterApp')
     else:
-        formulario = CreateCatsForm(instance=gato)
+        formulario = CreateCatsForm(initial={
+            'nombre': gato.nombre,
+            'edad': gato.edad,
+            'fecha_nacimiento': gato.fecha_nacimiento,
+            'imagen': gato.imagen,  # Cargar la imagen actual
+            'texto_formateado': gato.texto_formateado,  # Cargar el texto formateado actual
+        })
 
     return render(request, 'start/editcat.html', {'formulario': formulario, 'animal': gato})
 
-def editdog(request, pk):
-    perro = get_object_or_404(Dogs, pk=pk)
-
-    if request.method == 'POST':
-        formulario = CreateDogsForm(request.POST, instance=perro)
-        if formulario.is_valid():
-            formulario.save()
-            return redirect('StarterApp:StarterApp')
-    else:
-        formulario = CreateDogsForm(instance=perro)
-
-    return render(request, 'start/editdog.html', {'formulario': formulario, 'animal':perro})
 
 def editbird(request, pk):
     pajaro = get_object_or_404(Birds, pk=pk)
     
     if request.method == 'POST':
-        formulario = CreateBirdsForm(request.POST, instance=pajaro)
+        formulario = CreateBirdsForm(request.POST)
         if formulario.is_valid():
+            pajaro.nombre = formulario.cleaned_data.get('nombre')
+            pajaro.edad = formulario.cleaned_data.get('edad')
+            pajaro.fecha_nacimiento = formulario.cleaned_data.get('fecha_nacimiento')
+            pajaro.save()
             formulario.save()
             return redirect('StarterApp:StarterApp')
     else:
-        formulario = CreateBirdsForm(instance=pajaro)
+        formulario = CreateBirdsFormForm(initial={'nombre': pajaro.nombre, 'edad': pajaro.edad, 'fecha_nacimiento': pajaro.fecha_nacimiento})
 
-    return render(request, 'start/editbird.html', {'formulario': formulario, 'animal': pajaro})
+    return render(request, 'start/editbird.html', {'formulario': formulario, 'animal':pajaro})
+
+def editdog(request, pk):
+    perro = get_object_or_404(Dogs, pk=pk)
+
+    if request.method == 'POST':
+        formulario = CreateDogsForm(request.POST)
+        if formulario.is_valid():
+            perro.nombre = formulario.cleaned_data.get('nombre')
+            perro.edad = formulario.cleaned_data.get('edad')
+            perro.fecha_nacimiento = formulario.cleaned_data.get('fecha_nacimiento')
+            perro.save()
+            return redirect('StarterApp:StarterApp')
+    else:
+        formulario = CreateDogsForm(initial={'nombre': perro.nombre, 'edad': perro.edad, 'fecha_nacimiento': perro.fecha_nacimiento})
+
+    return render(request, 'start/editdog.html', {'formulario': formulario, 'animal':perro})
+
+
 
 
 

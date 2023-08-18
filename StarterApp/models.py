@@ -1,10 +1,13 @@
 from django.db import models
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 class Cats(models.Model):
     nombre = models.CharField(max_length=20)
     edad = models.IntegerField()
     fecha_nacimiento = models.DateField()
+    imagen = models.ImageField(upload_to='cat_images/', blank=True, null=True)
+    texto_formateado = RichTextField(blank=True, null=True)
 
     @property
     def fecha_nacimiento_formatted(self):
